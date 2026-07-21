@@ -1,8 +1,10 @@
 import "server-only";
 
 import type { BikeRecord, PublicBikeRecord } from "@/lib/types";
+import { daysSinceInBrussels } from "@/lib/days";
 
 const RECORD_KEY = "broken-bike:current-record";
+const DEFAULT_BROKEN_AT = "2026-07-14T22:00:00.000Z";
 
 function redisConfig() {
   const url = process.env.UPSTASH_REDIS_REST_URL;
@@ -26,9 +28,9 @@ async function redis(command: string[]) {
 }
 
 function recordFromEnvironment(): BikeRecord | null {
-  const brokenAt = process.env.INITIAL_BROKEN_AT;
-  if (!brokenAt || Number.isNaN(new Date(brokenAt).getTime())) return null;
-  return { brokenAt: new Date(brokenAt).toISOString(), note: "The opening chapter of the bike saga." };
+  const configuredDate = process.env.INITIAL_BROKEN_AT;
+  const brokenAt = configuredDate && !Number.isNaN(new Date(configuredDate).getTime()) ? configuredDate : DEFAULT_BROKEN_AT;
+  return { brokenAt: new Date(brokenAt).toISOString(), note: "The current streak began." };
 }
 
 export async function getBikeRecord(): Promise<PublicBikeRecord | null> {
@@ -38,8 +40,7 @@ export async function getBikeRecord(): Promise<PublicBikeRecord | null> {
 
   if (!record) return null;
 
-  const millisecondsPerDay = 86_400_000;
-  const daysBroken = Math.max(0, Math.floor((Date.now() - new Date(record.brokenAt).getTime()) / millisecondsPerDay));
+  const daysBroken = daysSinceInBrussels(record.brokenAt);
   return { ...record, daysBroken };
 }
 

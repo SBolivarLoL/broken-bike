@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-function daysSince(brokenAt?: string) {
-  if (!brokenAt) return 0;
-  return Math.max(0, Math.floor((Date.now() - new Date(brokenAt).getTime()) / 86_400_000));
-}
+import { daysSinceInBrussels, millisecondsUntilNextBrusselsMidnight } from "@/lib/days";
 
 export function DayCounter({ brokenAt }: { brokenAt?: string }) {
-  const [days, setDays] = useState(() => daysSince(brokenAt));
+  const [days, setDays] = useState(() => (brokenAt ? daysSinceInBrussels(brokenAt) : 0));
 
   useEffect(() => {
-    const timer = window.setInterval(() => setDays(daysSince(brokenAt)), 60_000);
-    return () => window.clearInterval(timer);
+    if (!brokenAt) return;
+
+    let timer: number;
+    const updateAtMidnight = () => {
+      setDays(daysSinceInBrussels(brokenAt));
+      timer = window.setTimeout(updateAtMidnight, millisecondsUntilNextBrusselsMidnight());
+    };
+    timer = window.setTimeout(updateAtMidnight, millisecondsUntilNextBrusselsMidnight());
+    return () => window.clearTimeout(timer);
   }, [brokenAt]);
 
   return (
