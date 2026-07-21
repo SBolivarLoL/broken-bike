@@ -1,6 +1,6 @@
-# Hirth's Broken Bike Counter
+# Geert's Broken Bike Counter
 
-A tiny public counter for the number of days since Hirth's bike last broke. Everyone can view the current record; only people with the shared admin password can reset it and add the incident note.
+A tiny public counter for the number of days since Geert's bike last broke. Everyone can view the current record; only people with the shared admin password can reset it and add the incident note.
 
 ## Deploy to Vercel
 

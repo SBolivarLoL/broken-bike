@@ -27,7 +27,7 @@ export default async function Home() {
 
       <section className="hero" aria-labelledby="page-title">
         <p className="eyebrow">Officially unofficial since forever</p>
-        <h1 id="page-title">Days since Hirth&apos;s bike <em>did a bike thing.</em></h1>
+        <h1 id="page-title">Days since Geert&apos;s bike <em>did a bike thing.</em></h1>
 
         {record ? (
           <div className="counter" aria-label={`${record.daysBroken} days`}>
