@@ -37,4 +37,20 @@ nav { display: flex; align-items: center; justify-content: space-between; }
 .incident h2 { margin: 7px 0 5px; max-width: 780px; font: 600 clamp(19px, 2.3vw, 28px)/1.15 "Playfair Display", Georgia, serif; letter-spacing: -.025em; }
 .date { margin: 0; color: var(--muted); font-size: 13px; }
 footer { padding-top: 21px; color: var(--muted); font-size: 12px; } footer span { color: var(--coral); margin-left: 4px; }
-@media (max-width: 600px) { .shell { padding: 22px 19px 20px; } .wordmark { font-size: 10px; } .hero { min-height: 470px; } .hero h1 { margin-bottom: 34px; } .counter { gap: 12px; } .counter p { font-size: 10px; } .incident { padding: 18px 0; } }
+@media (max-width: 600px) {
+  .shell { min-height: 100dvh; padding: 20px 19px 16px; }
+  .wordmark { gap: 7px; font-size: 9px; }
+  .small-wheel { width: 16px; height: 16px; }
+  .admin-button { padding: 9px 13px; font-size: 12px; }
+  .admin-popover { top: 42px; width: min(330px, calc(100vw - 38px)); }
+  .hero { flex: 0 0 auto; min-height: 0; padding: 104px 0 50px; }
+  .hero h1 { margin: 14px 0 32px; font-size: clamp(42px, 12vw, 49px); line-height: .94; }
+  .counter { flex-direction: column; gap: 8px; }
+  .counter span { font-size: clamp(158px, 49vw, 194px); line-height: .72; }
+  .counter p { margin: 0; font-size: 10px; line-height: 1.45; text-align: center; letter-spacing: .03em; }
+  .incident { gap: 13px; padding: 20px 0; }
+  .incident-icon { width: 35px; height: 35px; font-size: 19px; }
+  .incident h2 { margin-top: 6px; font-size: 22px; line-height: 1.12; }
+  .date { font-size: 12px; }
+  footer { padding-top: 17px; font-size: 11px; }
+}
