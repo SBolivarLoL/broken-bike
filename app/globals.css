@@ -31,7 +31,6 @@ nav { display: flex; align-items: center; justify-content: space-between; }
 .counter { display: flex; align-items: center; gap: 21px; }
 .counter span { color: var(--lime); font: 700 clamp(116px, 18vw, 220px)/.72 "DM Sans", sans-serif; letter-spacing: -.11em; text-shadow: 2px 2px 0 var(--ink); }
 .counter p { margin: 13px 0 0; color: #4e5750; text-align: left; font: 500 12px/1.38 "DM Mono", monospace; text-transform: uppercase; }
-.no-record span { color: #d7d5ce; text-shadow: none; }
 .incident { border-top: 1px solid #d5d3cc; border-bottom: 1px solid #d5d3cc; padding: 22px 0; display: flex; gap: 18px; align-items: flex-start; }
 .incident-icon { background: var(--coral); width: 37px; height: 37px; flex: 0 0 auto; border-radius: 50%; display: grid; place-items: center; color: white; font-size: 21px; }
 .incident .eyebrow { margin-top: 2px; }

@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 
 import { AdminPanel } from "@/components/admin-panel";
+import { DayCounter } from "@/components/day-counter";
 import { adminCookie, isAdmin } from "@/lib/auth";
 import { getBikeRecord } from "@/lib/store";
 
@@ -29,17 +30,7 @@ export default async function Home() {
         <p className="eyebrow">Officially unofficial since forever</p>
         <h1 id="page-title">Days since Geert&apos;s bike <em>did a bike thing.</em></h1>
 
-        {record ? (
-          <div className="counter" aria-label={`${record.daysBroken} days`}>
-            <span>{record.daysBroken}</span>
-            <p>{record.daysBroken === 1 ? "whole day" : "whole days"}<br />of relative peace</p>
-          </div>
-        ) : (
-          <div className="counter no-record">
-            <span>—</span>
-            <p>The record starts<br />with the next mishap</p>
-          </div>
-        )}
+        <DayCounter key={record?.brokenAt ?? "no-record"} brokenAt={record?.brokenAt} />
       </section>
 
       <section className="incident" aria-label="Latest incident">
